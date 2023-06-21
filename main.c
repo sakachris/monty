@@ -28,6 +28,8 @@ int main(int ac, char **av)
 	while ((c_read = getline(&lineptr, &n, mfile)) != -1)
 	{
 		token = strtok(lineptr, delim);
+		if (token == NULL)
+			continue;
 		cmd = check_opcode(token, line_number, stack, lineptr, mfile);
 		f = get_opcode(cmd);
 		if (strcmp(cmd, "push") == 0)
