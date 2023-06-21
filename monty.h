@@ -46,4 +46,6 @@ size_t print_list(stack_t **h);
 void free_list(stack_t *head);
 char *check_opcode(char *str, unsigned int n, stack_t *s, char *l, FILE *f);
 char *test_int(char *str, unsigned int n, stack_t *h, char *l, FILE *f);
+void error_msg1(void);
+void error_msg2(char **av);
 #endif /* __MONTY_H__ */

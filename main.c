@@ -14,30 +14,32 @@ int main(int ac, char **av)
 	char *token, *token2, *cmd, *arg, *lineptr = NULL;
 	size_t n = 0;
 	ssize_t c_read;
-	unsigned int line_number = 1;
+	unsigned int num, line_number = 1;
 	stack_t *stack = NULL;
 	const char *delim = " \n";
+	void (*f)(stack_t **stack, unsigned int line_number);
 
 	if (ac != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+		error_msg1();
 	mfile = fopen(av[1], "r");
 	if (!mfile)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
-		exit(EXIT_FAILURE);
-	}
+		error_msg2(av);
 
 	while ((c_read = getline(&lineptr, &n, mfile)) != -1)
 	{
 		token = strtok(lineptr, delim);
 		cmd = check_opcode(token, line_number, stack, lineptr, mfile);
+		f = get_opcode(cmd);
 		if (strcmp(cmd, "push") == 0)
+		{
 			token2 = strtok(NULL, delim);
-		arg = test_int(token2, line_number, stack, lineptr, mfile);
-		opcode_path(&stack, cmd, arg, line_number);
+			arg = test_int(token2, line_number, stack, lineptr, mfile);
+			num = atoi(arg);
+			f(&stack, num);
+		}
+		else
+			f(&stack, line_number);
+		/*opcode_path(&stack, cmd, arg, line_number);*/
 		line_number++;
 	}
 
