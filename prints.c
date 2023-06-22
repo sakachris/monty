@@ -83,3 +83,30 @@ void rotl_opcode(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 }
+
+/**
+ * rotr_opcode - rotates the stack to the bottom
+ * @stack: pointer to head node;
+ * @line_number: line number in the file
+ *
+ * Return: Nothing
+ */
+
+void rotr_opcode(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	if (*stack)
+	{
+		while (temp->next != NULL)
+			temp = temp->next;
+		(*stack)->prev = temp;
+		temp->next = *stack;
+		temp->prev->next = NULL;
+		temp->prev = NULL;
+		*stack = temp;
+		temp = NULL;
+	}
+
+	(void)line_number;
+}
