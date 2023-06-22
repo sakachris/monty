@@ -32,3 +32,30 @@ void pchar_opcode(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+ * pstr_opcode - prints the string starting at the top of the stack
+ * @stack: pointer to head node;
+ * @line_number: line number in the file
+ *
+ * Return: Nothing
+ */
+
+void pstr_opcode(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	/*if (*stack == NULL)
+		printf("\n");*/
+	
+	while (temp != NULL)
+	{
+		if (temp->n <= 0 || temp->n > 127)
+			break;
+		printf("%c", temp->n);
+		temp = temp->next;
+	}
+	printf("\n");
+
+	(void)line_number;
+}
