@@ -1,3 +1,1 @@
-push 3
-add
-pall
+nop
