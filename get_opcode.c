@@ -18,6 +18,7 @@ void (*get_opcode(char *str))(stack_t **, unsigned int)
 		{"add", add_opcode},
 		{"sub", sub_opcode},
 		{"div", div_opcode},
+		{"mul", mul_opcode},
 		{NULL, NULL}
 	};
 
