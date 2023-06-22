@@ -1,5 +1,13 @@
 #include "monty.h"
 
+/**
+ * add_cmd - adds the top two elements of stack, deletes the top
+ * @stack: pointer to head node
+ * @line_number: line number from file
+ *
+ * Return: Nothing
+ */
+
 void add_cmd(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp, *temp2 = *stack;
