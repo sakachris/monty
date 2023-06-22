@@ -10,13 +10,14 @@
 void (*get_opcode(char *str))(stack_t **, unsigned int)
 {
 	instruction_t op[] = {
-		{"push", push_cmd},
-		{"pall", pall_cmd},
-		{"pint", pint_cmd},
-		{"pop", pop_cmd},
-		{"swap", swap_cmd},
-		{"add", add_cmd},
-		{"sub", sub_cmd},
+		{"push", push_opcode},
+		{"pall", pall_opcode},
+		{"pint", pint_opcode},
+		{"pop", pop_opcode},
+		{"swap", swap_opcode},
+		{"add", add_opcode},
+		{"sub", sub_opcode},
+		{"div", div_opcode},
 		{NULL, NULL}
 	};
 

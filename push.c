@@ -1,14 +1,14 @@
 #include "monty.h"
 
 /**
- * push_cmd - adds node to stack
+ * push_opcode - adds node to stack
  * @stack: pointer to head node;
  * @line_number: line number in the file
  *
  * Return: Nothing
  */
 
-void push_cmd(stack_t **stack, unsigned int line_number)
+void push_opcode(stack_t **stack, unsigned int line_number)
 {
 	stack_t *add;
 
@@ -34,14 +34,14 @@ void push_cmd(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pall_cmd - prints stack list
+ * pall_opcode - prints stack list
  * @stack: pointer to head node;
  * @line_number: line number in the file
  *
  * Return: Nothing
  */
 
-void pall_cmd(stack_t **stack, unsigned int line_number)
+void pall_opcode(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = NULL;
 
@@ -59,14 +59,14 @@ void pall_cmd(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pint_cmd - prints data at the top of stack
+ * pint_opcode - prints data at the top of stack
  * @stack: pointer to head node
  * @line_number: line number in the file
  *
  * Return: Nothing
  */
 
-void pint_cmd(stack_t **stack, unsigned int line_number)
+void pint_opcode(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
@@ -83,14 +83,14 @@ void pint_cmd(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pop_cmd - deletes the data at the top of a stack
+ * pop_opcode - deletes the data at the top of a stack
  * @stack: pointer to head node
  * @line_number: line number in the file
  *
  * Return: Nothing
  */
 
-void pop_cmd(stack_t **stack, unsigned int line_number)
+void pop_opcode(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
@@ -118,14 +118,14 @@ void pop_cmd(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * swap_cmd - swap top two elements of a stack
+ * swap_opcode - swap top two elements of a stack
  * @stack: pointer to head node
  * @line_number: line number in the file
  *
  * Return: Nothing
  */
 
-void swap_cmd(stack_t **stack, unsigned int line_number)
+void swap_opcode(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp, *temp2 = *stack;
 	unsigned int n = 0;
