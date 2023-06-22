@@ -19,7 +19,7 @@ int main(int ac, char **av)
 	unsigned int line_number = 1;
 	int num;
 	stack_t *stack = NULL;
-	const char *delim = " \n";
+	const char *delim = " \t\n";
 	void (*f)(stack_t **stack, unsigned int line_number);
 
 	if (ac != 2)
