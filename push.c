@@ -116,3 +116,45 @@ void pop_cmd(stack_t **stack, unsigned int line_number)
 		*stack = NULL;
 	}
 }
+
+/**
+ * swap_cmd - swap top two elements of a stack
+ * @stack: pointer to head node
+ * @line_number: line number in the file
+ *
+ * Return: Nothing
+ */
+
+void swap_cmd(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp, *temp2 = *stack;
+	unsigned int n = 0;
+
+	while (temp2)
+	{
+		temp2 = temp2->next;
+		n++;
+	}
+	if (n >= 2)
+	{
+		temp = *stack;
+		temp = (*stack)->next;
+		(*stack)->next = temp->next;
+		temp->prev = NULL;
+		if (temp->next != NULL)
+			temp->next->prev = *stack;
+		temp->next = *stack;
+		(*stack)->prev = temp;
+		*stack = temp;
+		temp = NULL;
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		fclose(v.mfile);
+		free(v.lineptr);
+		free_list(*stack);
+		exit(EXIT_FAILURE);
+	}
+}
+

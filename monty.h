@@ -58,6 +58,7 @@ void push_cmd(stack_t **stack, unsigned int line_number);
 void pall_cmd(stack_t **stack, unsigned int line_number);
 void pint_cmd(stack_t **stack, unsigned int line_number);
 void pop_cmd(stack_t **stack, unsigned int line_number);
+void swap_cmd(stack_t **stack, unsigned int line_number);
 void free_list(stack_t *head);
 char *check_opcode(char *str, unsigned int n, stack_t *s);
 char *test_int(char *str, unsigned int n, stack_t *h);
