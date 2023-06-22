@@ -117,7 +117,7 @@ void div_opcode(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
 		fclose(v.mfile);
 		free(v.lineptr);
 		free_list(*stack);
