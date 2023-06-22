@@ -37,21 +37,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct var_s - variables used for stack (or queue)
- * @mfile: monty file
- * @lineptr: lineptr in getline
- *
- * Description: variables to use as global
- * for stack, queues, LIFO, FIFO
- */
-typedef struct var_s
-{
-	FILE *mfile;
-	char *lineptr;
-} var_t;
-extern var_t v;
-
 void opcode_path(stack_t **stack, char *cmd, char *arg, unsigned int n);
 void (*get_opcode(char *str))(stack_t **, unsigned int);
 void push_cmd(stack_t **stack, unsigned int line_number);
@@ -59,10 +44,10 @@ void pall_cmd(stack_t **stack, unsigned int line_number);
 stack_t *add_node_begin(stack_t **head, const int n);
 size_t print_list(stack_t **h);
 void free_list(stack_t *head);
-char *check_opcode(char *str, unsigned int n, stack_t *s);
-char *test_int(char *str, unsigned int n, stack_t *h);
+char *check_opcode(char *str, unsigned int n, stack_t *s, char *l, FILE *f);
+char *test_int(char *str, unsigned int n, stack_t *h, char *l, FILE *f);
 void error_msg1(void);
 void error_msg2(char **av);
 void pint_cmd(stack_t **stack, unsigned int line_number);
-void print_head(stack_t **h, unsigned int line_number);
+void print_head(stack_t **h);
 #endif /* __MONTY_H__ */

@@ -17,8 +17,6 @@ stack_t *add_node_begin(stack_t **head, const int n)
 	if (!add)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		fclose(v.mfile);
-		free(v.lineptr);
 		free_list(*head);
 		exit(EXIT_FAILURE);
 	}
@@ -60,26 +58,9 @@ size_t print_list(stack_t **h)
 	return (count);
 }
 
-/**
- * print_head - prints the first node of a linked list
- * @h: pointer to head node
- * @line_number: line number from file
- *
- * Return: Nothing
- */
-
-void print_head(stack_t **h, unsigned int line_number)
+void print_head(stack_t **h)
 {
 	stack_t *temp = *h;
-
 	if (temp != NULL)
 		printf("%i\n", temp->n);
-	else
-	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		fclose(v.mfile);
-		free(v.lineptr);
-		free_list(*h);
-		exit(EXIT_FAILURE);
-	}
 }

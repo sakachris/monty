@@ -24,18 +24,13 @@ void push_cmd(stack_t **stack, unsigned int line_number)
 void pall_cmd(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+
 	print_list(stack);
 }
 
-/**
- * pint_cmd - prints data at the top of stack
- * @stack: pointer to head node
- * @line_number: line number in the file
- *
- * Return: Nothing
- */
-
 void pint_cmd(stack_t **stack, unsigned int line_number)
 {
-	print_head(stack, line_number);
+	(void)line_number;
+
+	print_head(stack);
 }

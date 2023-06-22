@@ -5,19 +5,21 @@
  * @str: argument to push
  * @n: line number
  * @h: pointer to head node
+ * @l: lineptr
+ * @f: file passed
  *
  * Return: string if integer
  */
 
-char *test_int(char *str, unsigned int n, stack_t *h)
+char *test_int(char *str, unsigned int n, stack_t *h, char *l, FILE *f)
 {
 	int i;
 
 	if (str == NULL)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", n);
-		fclose(v.mfile);
-		free(v.lineptr);
+		fprintf(stderr, "L%d: usage: push integer\n", n);
+		fclose(f);
+		free(l);
 		free_list(h);
 		exit(EXIT_FAILURE);
 	}
@@ -27,9 +29,9 @@ char *test_int(char *str, unsigned int n, stack_t *h)
 			continue;
 		if (isdigit(str[i]) == 0)
 		{
-			fprintf(stderr, "L%u: usage: push integer\n", n);
-			fclose(v.mfile);
-			free(v.lineptr);
+			fprintf(stderr, "L%d: usage: push integer\n", n);
+			fclose(f);
+			free(l);
 			free_list(h);
 			exit(EXIT_FAILURE);
 		}
