@@ -66,6 +66,7 @@ void mul_opcode(stack_t **stack, unsigned int line_number);
 void mod_opcode(stack_t **stack, unsigned int line_number);
 void pchar_opcode(stack_t **stack, unsigned int line_number);
 void pstr_opcode(stack_t **stack, unsigned int line_number);
+void rotl_opcode(stack_t **stack, unsigned int line_number);
 void free_list(stack_t *head);
 char *check_opcode(char *str, unsigned int n, stack_t *s);
 char *test_int(char *str, unsigned int n, stack_t *h);

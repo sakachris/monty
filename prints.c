@@ -18,7 +18,7 @@ void pchar_opcode(stack_t **stack, unsigned int line_number)
 		/* free_list(*stack); */
 		exit(EXIT_FAILURE);
 	}
-	
+
 	if ((*stack)->n >= 0 && (*stack)->n <= 127)
 	{
 		printf("%c\n", (*stack)->n);
@@ -45,9 +45,6 @@ void pstr_opcode(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
-	/*if (*stack == NULL)
-		printf("\n");*/
-	
 	while (temp != NULL)
 	{
 		if (temp->n <= 0 || temp->n > 127)
@@ -56,6 +53,33 @@ void pstr_opcode(stack_t **stack, unsigned int line_number)
 		temp = temp->next;
 	}
 	printf("\n");
+
+	(void)line_number;
+}
+
+/**
+ * rotl_opcode - rotates the stack to the top
+ * @stack: pointer to head node;
+ * @line_number: line number in the file
+ *
+ * Return: Nothing
+ */
+
+void rotl_opcode(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	if (*stack)
+	{
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = *stack;
+		(*stack)->prev = temp;
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
+		temp->next->next = NULL;
+		temp = NULL;
+	}
 
 	(void)line_number;
 }
