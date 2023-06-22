@@ -164,3 +164,50 @@ void mul_opcode(stack_t **stack, unsigned int line_number)
 	}
 }
 
+/**
+ * mod_opcode - finds module of top two elements of stack
+ * replaces module with second top and deletes the top
+ * @stack: pointer to head node
+ * @line_number: line number from file
+ *
+ * Return: Nothing
+ */
+
+void mod_opcode(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp, *temp2 = *stack;
+	unsigned int n = 0;
+	int mod;
+
+	while (temp2)
+	{
+		temp2 = temp2->next;
+		n++;
+	}
+	if (n >= 2)
+	{
+		if ((*stack)->n == 0)
+		{
+			fprintf(stderr, "L%u: division by zero\n", line_number);
+			fclose(v.mfile);
+			free(v.lineptr);
+			free_list(*stack);
+			exit(EXIT_FAILURE);
+		}
+		temp = *stack;
+		*stack = (*stack)->next;
+		mod = (*stack)->n % temp->n;
+		(*stack)->n = mod;
+		free(temp);
+		temp = NULL;
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		fclose(v.mfile);
+		free(v.lineptr);
+		free_list(*stack);
+		exit(EXIT_FAILURE);
+	}
+}
+

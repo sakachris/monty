@@ -63,6 +63,7 @@ void add_opcode(stack_t **stack, unsigned int line_number);
 void sub_opcode(stack_t **stack, unsigned int line_number);
 void div_opcode(stack_t **stack, unsigned int line_number);
 void mul_opcode(stack_t **stack, unsigned int line_number);
+void mod_opcode(stack_t **stack, unsigned int line_number);
 void free_list(stack_t *head);
 char *check_opcode(char *str, unsigned int n, stack_t *s);
 char *test_int(char *str, unsigned int n, stack_t *h);
