@@ -31,7 +31,7 @@ int main(int ac, char **av)
 	while ((c_read = getline(&v.lineptr, &n, v.mfile)) != -1)
 	{
 		token = strtok(v.lineptr, delim);
-		if (token == NULL || (strcmp(token, "nop") == 0))
+		if (token == NULL || (strcmp(token, "nop") == 0) || (token[0] == '#'))
 			continue;
 		cmd = check_opcode(token, line_number, stack);
 		f = get_opcode(cmd);
