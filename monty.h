@@ -56,13 +56,11 @@ void opcode_path(stack_t **stack, char *cmd, char *arg, unsigned int n);
 void (*get_opcode(char *str))(stack_t **, unsigned int);
 void push_cmd(stack_t **stack, unsigned int line_number);
 void pall_cmd(stack_t **stack, unsigned int line_number);
-stack_t *add_node_begin(stack_t **head, const int n);
-size_t print_list(stack_t **h);
+void pint_cmd(stack_t **stack, unsigned int line_number);
+void pop_cmd(stack_t **stack, unsigned int line_number);
 void free_list(stack_t *head);
 char *check_opcode(char *str, unsigned int n, stack_t *s);
 char *test_int(char *str, unsigned int n, stack_t *h);
 void error_msg1(void);
 void error_msg2(char **av);
-void pint_cmd(stack_t **stack, unsigned int line_number);
-void print_head(stack_t **h, unsigned int line_number);
 #endif /* __MONTY_H__ */

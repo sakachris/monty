@@ -10,7 +10,27 @@
 
 void push_cmd(stack_t **stack, unsigned int line_number)
 {
-	add_node_begin(stack, line_number);
+	stack_t *add;
+
+	add = malloc(sizeof(stack_t));
+	/*add = NULL;*/
+	if (!add)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		fclose(v.mfile);
+		free(v.lineptr);
+		free_list(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	add->n = line_number;
+	add->next = *stack;
+	add->prev = NULL;
+	if (*stack != NULL)
+	{
+		(*stack)->prev = add;
+	}
+	*stack = add;
 }
 
 /**
@@ -23,8 +43,19 @@ void push_cmd(stack_t **stack, unsigned int line_number)
 
 void pall_cmd(stack_t **stack, unsigned int line_number)
 {
+	stack_t *temp = NULL;
+
+	if (stack != NULL)
+	{
+		temp = *stack;
+		while (temp)
+		{
+			printf("%d\n", temp->n);
+			temp = temp->next;
+		}
+	}
+
 	(void)line_number;
-	print_list(stack);
 }
 
 /**
@@ -37,5 +68,51 @@ void pall_cmd(stack_t **stack, unsigned int line_number)
 
 void pint_cmd(stack_t **stack, unsigned int line_number)
 {
-	print_head(stack, line_number);
+	stack_t *temp = *stack;
+
+	if (temp != NULL)
+		printf("%i\n", temp->n);
+	else
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		fclose(v.mfile);
+		free(v.lineptr);
+		free_list(*stack);
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+ * pop_cmd - deletes the data at the top of a stack
+ * @stack: pointer to head node
+ * @line_number: line number in the file
+ *
+ * Return: Nothing
+ */
+
+void pop_cmd(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if ((stack == NULL) || (*stack == NULL))
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		fclose(v.mfile);
+		free(v.lineptr);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((*stack)->next != NULL)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
+		free(temp);
+		temp = NULL;
+	}
+	else
+	{
+		free(*stack);
+		*stack = NULL;
+	}
 }
