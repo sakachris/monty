@@ -41,6 +41,7 @@ typedef struct instruction_s
  * struct var_s - variables used for stack (or queue)
  * @mfile: monty file
  * @lineptr: lineptr in getline
+ * @mode: selects mode for stack or queue
  *
  * Description: variables to use as global
  * for stack, queues, LIFO, FIFO
@@ -49,6 +50,7 @@ typedef struct var_s
 {
 	FILE *mfile;
 	char *lineptr;
+	int mode;
 } var_t;
 extern var_t v;
 
@@ -73,4 +75,5 @@ char *check_opcode(char *str, unsigned int n, stack_t *s);
 char *test_int(char *str, unsigned int n, stack_t *h);
 void error_msg1(void);
 void error_msg2(char **av);
+int select_mode(char *str);
 #endif /* __MONTY_H__ */

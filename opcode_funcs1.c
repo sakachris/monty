@@ -10,10 +10,9 @@
 
 void push_opcode(stack_t **stack, unsigned int line_number)
 {
-	stack_t *add;
+	stack_t *add, *temp;
 
 	add = malloc(sizeof(stack_t));
-	/*add = NULL;*/
 	if (!add)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -22,15 +21,34 @@ void push_opcode(stack_t **stack, unsigned int line_number)
 		free_list(*stack);
 		exit(EXIT_FAILURE);
 	}
-
 	add->n = line_number;
-	add->next = *stack;
-	add->prev = NULL;
-	if (*stack != NULL)
+
+	if (v.mode == 1 || !v.mode)
 	{
-		(*stack)->prev = add;
+		add->next = *stack;
+		add->prev = NULL;
+		if (*stack != NULL)
+			(*stack)->prev = add;
+		*stack = add;
 	}
-	*stack = add;
+	else if (v.mode == 2)
+	{
+		if (*stack == NULL)
+		{
+			add->prev = NULL;
+			add->next = NULL;
+			*stack = add;
+		}
+		else
+		{
+			temp = *stack;
+			while (temp->next != NULL)
+				temp = temp->next;
+			temp->next = add;
+			add->prev = temp;
+			add->next = NULL;
+		}
+	}
 }
 
 /**

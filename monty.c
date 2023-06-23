@@ -33,6 +33,8 @@ int main(int ac, char **av)
 		token = strtok(v.lineptr, delim);
 		if (token == NULL || (strcmp(token, "nop") == 0) || (token[0] == '#'))
 			continue;
+		if (select_mode(token) == 1)
+			continue;
 		cmd = check_opcode(token, line_number, stack);
 		f = get_opcode(cmd);
 		if (strcmp(cmd, "push") == 0)
@@ -76,4 +78,52 @@ char *check_opcode(char *str, unsigned int n, stack_t *s)
 	}
 	(void)n;
 	return (str);
+}
+
+/**
+ * select_mode - selects whether to store as stack or queue
+ * @str: string to determine selection
+ *
+ * Return: 1 if mode selected, 0 if not
+ */
+
+int select_mode(char *str)
+{
+	if (strcmp(str, "stack") == 0)
+	{
+		v.mode = 1;
+		return (1);
+	}
+	else if (strcmp(str, "queue") == 0)
+	{
+		v.mode = 2;
+		return (1);
+	}
+
+	return (0);
+}
+
+/**
+ * error_msg1 - prints error message
+ *
+ * Return: Nothing
+ */
+
+void error_msg1(void)
+{
+	fprintf(stderr, "USAGE: monty file\n");
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * error_msg2 - prints error message
+ * @av: arguments passed
+ *
+ * Return: Nothing
+ */
+
+void error_msg2(char **av)
+{
+	fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+	exit(EXIT_FAILURE);
 }
