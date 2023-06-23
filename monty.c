@@ -32,9 +32,15 @@ int main(int ac, char **av)
 	{
 		token = strtok(v.lineptr, delim);
 		if (token == NULL || (strcmp(token, "nop") == 0) || (token[0] == '#'))
+		{
+			line_number++;
 			continue;
+		}
 		if (select_mode(token) == 1)
+		{
+			line_number++;
 			continue;
+		}
 		cmd = check_opcode(token, line_number, stack);
 		f = get_opcode(cmd);
 		if (strcmp(cmd, "push") == 0)
